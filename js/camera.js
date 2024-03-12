@@ -28,7 +28,6 @@ function startVideo() {
 window.addEventListener('DOMContentLoaded', startVideo);
 
 document.querySelector('#send').addEventListener('click', async () => {
-    // const canvas = document.querySelector('canvas');
     startLoading()
     const canvas = document.createElement('canvas');
     canvas.height = video.videoHeight;
@@ -61,25 +60,8 @@ async function nav(file) {
         let lat = pos.coords.latitude
         let long = pos.coords.longitude
         let timestamp = pos.timestamp
-        // console.log(lat+ ' ' +long)
-        // console.log(timestamp)
 
         saveLocal(lat, long, timestamp, file)
-        // const formData = new FormData()
-        // formData.append('image', file)
-        // formData.append('latitude', lat)
-        // formData.append('longitude', long)
-  
-        // const response = await fetch('http://api-ronda.test/api/camera-qr-post', {
-        //     method: 'POST',
-        //     headers: { 'Accept': 'application/json' },
-        //     body: formData,
-        // });
-        
-        // console.log(response)
-        // const data = await response.json()
-        // console.log(data)
-        // alert("Foto enviada com sucesso!!!")
     }
     const err = (error)=>{
         console.log(error.message)

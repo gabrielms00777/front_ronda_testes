@@ -4,8 +4,6 @@ const idParam = urlParams.get("id");
 const canvasElement = document.querySelector('canvas');
 let data = null
 
-// const imageElement = document.querySelector('#image');
-
 window.addEventListener('DOMContentLoaded', async ()=>{
     startLoading()
 
@@ -27,18 +25,14 @@ document.querySelector('#send').addEventListener('click', async () => {
         window.location.href = './dashboard.html'
     });
 
-
     stopLoading()
-    // console.log(canvasElement.toBlob)
 })
 
 async function sendServer(data, file){
     const token = await getToken()
-    // const dateTime = new Date(data.timestamp);
 
     var data = new Date(data.timestamp);
 
-// Obter os componentes da data e hora
     var ano = data.getFullYear();
     var mes = ('0' + (data.getMonth() + 1)).slice(-2);
     var dia = ('0' + data.getDate()).slice(-2);
@@ -46,13 +40,9 @@ async function sendServer(data, file){
     var minuto = ('0' + data.getMinutes()).slice(-2);
     var segundo = ('0' + data.getSeconds()).slice(-2);
 
-    // Formatar a data e hora no formato desejado
     var data_formatada = ano + '-' + mes + '-' + dia + ' ' + hora + ':' + minuto + ':' + segundo;
 
     console.log(data_formatada); 
-    // const dateTime = new Date(data.timestamp)
-    // let formattedDateTime = dateTime.toISOString().slice(0, 19).replace('T', ' ');
-    // let formattedDateTime = dateTime.toLocaleDateString('pt-BR');
 
     const formData = new FormData()
     formData.append('photo', file)

@@ -26,13 +26,12 @@ form.addEventListener('submit', async (e) => {
 
         await localStorage.setItem('token', JSON.stringify({name, token, email}))
 
-        // console.log(data); 
         window.location.href = 'dashboard.html'
         spinner.classList.add('hidden')
     
         } catch (error) {
-        console.error('Error:', error.message); // Log error for debugging
-        alert('Login failed, please try again later.');
+        console.error('Error:', error.message); 
+        alert('Login falhou, tente novamente.');
         spinner.classList.add('hidden')
     }
 

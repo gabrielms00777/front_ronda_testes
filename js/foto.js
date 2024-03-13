@@ -3,6 +3,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const idParam = urlParams.get("id");
 const canvasElement = document.querySelector('canvas');
 let data = null
+const BASE_URL = 'https://api.ronda.gcmsoftware.com.br/api'
 
 window.addEventListener('DOMContentLoaded', async ()=>{
     startLoading()
@@ -51,7 +52,7 @@ async function sendServer(data, file){
     formData.append('date_time', data_formatada)
 
     try {
-        const response = await fetch('http://api-ronda.test/api/route/store', {
+        const response = await fetch(`${BASE_URL}/route/store`, {
             method: 'POST',
             headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${token}` },
             body: formData,

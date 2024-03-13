@@ -4,6 +4,7 @@ const spinner = document.getElementById('spinner')
 const locations = document.getElementById('locations')
 const listStops = document.getElementById('list-stops')
 const listRounds = document.getElementById('list-rounds')
+const BASE_URL = 'https://api.ronda.gcmsoftware.com.br/api'
 
 window.addEventListener('DOMContentLoaded', async ()=>{
     startLoading()
@@ -14,39 +15,7 @@ window.addEventListener('DOMContentLoaded', async ()=>{
         getStops(),
         getStopsCompleteds(),
     ])
-    // await getStops()
-    // await getStopsCompleteds()
-
-    // const stops = await getStops();
-    // console.log(stops)
-    
-    // Limpa a div antes de adicionar novos elementos
-    locations.innerHTML = '';
-    
-    // Loop pelos resultados da função e cria um elemento para cada parada
-    // for (const stop of stops) {
-    //     console.log(stop)
-    //     const stopElement = document.createElement('div');
-    //     stopElement.classList.add('stop');
-
-    //     // Adiciona o nome da parada como título
-    //     const stopTitle = document.createElement('h3');
-    //     stopTitle.textContent = stop.name;
-    //     stopElement.appendChild(stopTitle);
-
-    //     // Adiciona a descrição da parada
-    //     const stopDescription = document.createElement('p');
-    //     stopDescription.textContent = stop.description;
-    //     stopElement.appendChild(stopDescription);
-
-    // // Adiciona outros elementos relevantes, como imagem, link para mapa, etc.
-
-    //  locations.appendChild(stopElement);
-    // }
-
-
-    // name_value.innerText = tokenData.name
-    // email_value.innerText = tokenData.email
+ 
     stopLoading()
 })
 
@@ -57,7 +26,7 @@ document.querySelector('#logout').addEventListener('click', ()=>{
 
 async function getStopsCompleteds(){
     const {token} = await JSON.parse(localStorage.getItem('token'))
-    const response = await fetch('http://api-ronda.test/api/stops',{
+    const response = await fetch(`${BASE_URL}/stops`,{
         headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -84,7 +53,7 @@ async function getStopsCompleteds(){
 
 async function getStops(){
     const {token} = await JSON.parse(localStorage.getItem('token'))
-    const response = await fetch('http://api-ronda.test/api/routes',{
+    const response = await fetch(`${BASE_URL}/routes`,{
         headers: {
             Authorization: `Bearer ${token}`,
         }
@@ -122,7 +91,7 @@ async function checkToken(){
         window.location.href = 'login.html'
     }
     try {
-        const res = await fetch('http://api-ronda.test/api/user',{
+        const res = await fetch(`${BASE_URL}/user`,{
             method:"GET",
             headers: {'Authorization': `Bearer ${tokenData.token}`}
         })
@@ -155,7 +124,7 @@ async function logout(){
             await localStorage.setItem('token', '{}')
             window.location.href = 'login.html'
         }
-        await fetch('http://api-ronda.test/api/logout',{
+        await fetch(`${BASE_URL}/logout`,{
             method:"DELETE",
             headers: {'Authorization': `Bearer ${tokenData.token}`}
         })

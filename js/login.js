@@ -1,5 +1,6 @@
 const form = document.querySelector("form")
 const spinner = document.getElementById('spinner')
+const BASE_URL = 'https://api.ronda.gcmsoftware.com.br/api'
     
 form.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -9,7 +10,7 @@ form.addEventListener('submit', async (e) => {
     const password = e.target.password.value
 
     try {
-        const response = await fetch('http://api-ronda.test/api/login', {
+        const response = await fetch(`${BASE_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', 
